@@ -1,22 +1,25 @@
 import { FC } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import '../src/stylesheets/App.scss';
 
-import { Home } from './components/routes/home/home';
-import { Posts } from './components/routes/posts/posts';
-import { Navbar } from './components/common/Navbar';
+import { Home } from './components/Routes/Home/home';
+import { Posts } from './components/Routes/Posts/posts';
+import { GlobalStyle } from './styledHelpers/global';
+import { Layout } from './components/Common/Layout';
 
-
-export const App : FC = () => {
-  return(
-    <BrowserRouter>
-      <Navbar />
-      <Routes>
-          <Route path='posts'/>
-          <Route path='home'/>
-      </Routes>
-    </BrowserRouter>
-  )
-}
+export const App: FC = () => {
+  return (
+    <>
+      <GlobalStyle />
+      <BrowserRouter>
+        <Layout>
+          <Routes>
+            <Route path='posts' element={<Posts />} />
+            <Route index element={<Home />} />
+          </Routes>
+        </Layout>
+      </BrowserRouter>
+    </>
+  );
+};
 
 export default App;
